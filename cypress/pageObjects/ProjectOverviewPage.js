@@ -6,8 +6,8 @@ export default class ProjectOverviewPage {
   checkLandingInPage(){
     utilsPage.waitUntilElementIsWithStatus(locatorsUtils.projectsOverviewPageLocators.filterProjectPlaceholder, "be.visible")
     utilsPage.waitUntilElementIsWithStatus(locatorsUtils.projectsOverviewPageLocators.projectOverviewCard, "be.visible")
-    utilsPage.triggerMouseoverElement(locatorsUtils.commonLocators.userAvatar)
-    //utilsPage.getElementIfHaveStatus(locatorsUtils.commonLocators.tooltipText, 'exist').should('have.text', "Ricardo Andrade")
+    utilsPage.triggerMouseEnterElement(locatorsUtils.commonLocators.userAvatar)
+    utilsPage.getElementIfHaveStatus(locatorsUtils.commonLocators.tooltipText, 'exist').should('have.text', "Ricardo Andrade")
   }
 }
 

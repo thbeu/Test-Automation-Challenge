@@ -69,7 +69,7 @@ export default class Utils {
     cy.clearLocalStorage()
   }
 
-  triggerMouseoverElement(locator) {
+  triggerMouseEnterElement(locator) {
     cy.wait(500)
     cy.waitUntil(() =>
         cy.get(locator)
@@ -77,7 +77,7 @@ export default class Utils {
           .wait(10) // for some reason this might be needed (https://github.com/cypress-io/cypress/issues/7306#issuecomment-636009167)
           .then($el => Cypress.dom.isAttached($el)),
       {timeout: 1000, interval: 10})
-        .get('@elemAlias').trigger("mouseover")
+      .get('@elemAlias').trigger("mouseenter")
   }
 }
 
