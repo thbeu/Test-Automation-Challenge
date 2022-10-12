@@ -52,6 +52,7 @@ export default class Utils {
   typeValueIntoElement(locator, value, typeDelay) {
     this.waitUntilElementIsWithStatus(locator, "be.visible")
       .type(value, {
+        log: false,
         force: true,
         delay: typeDelay
       })
@@ -66,6 +67,17 @@ export default class Utils {
     })
     cy.clearCookies({domain: null})
     cy.clearLocalStorage()
+  }
+
+  triggerMouseoverElement(locator) {
+    cy.wait(500)
+    cy.waitUntil(() =>
+        cy.get(locator)
+          .as('elemAlias')
+          .wait(10) // for some reason this might be needed (https://github.com/cypress-io/cypress/issues/7306#issuecomment-636009167)
+          .then($el => Cypress.dom.isAttached($el)),
+      {timeout: 1000, interval: 10})
+        .get('@elemAlias').trigger("mouseover")
   }
 }
 

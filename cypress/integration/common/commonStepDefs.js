@@ -5,15 +5,14 @@ import {
 } from "cypress-cucumber-preprocessor/steps";
 import {utilsPage} from "../../pageObjects/utils/Utils";
 import {locatorsUtils} from "../../pageObjects/utils/LocatorsUtils";
+import {homepage} from "../../pageObjects/Homepage";
 
 export default class commonStepDefs {
 }
 
 Given(/^I visit the homepage$/, () => {
   cy.visit(Cypress.env('url'))
-  utilsPage.waitUntilElementIsWithStatus(locatorsUtils.homepageLocators.emailField, "be.visible")
-  utilsPage.waitUntilElementIsWithStatus(locatorsUtils.homepageLocators.passwordField, "be.visible")
-  utilsPage.waitUntilElementIsWithStatus(locatorsUtils.homepageLocators.signInButton, "be.disabled")
+  homepage.veryfyLandingInHomePage()
 });
 
 And(/^I successfully login$/, () => {

@@ -4,8 +4,9 @@ Feature: User Login
 
     Background:
         Given I visit the homepage
-        And I successfully login
 
     @validCredentials
-    Scenario: Login with valid credentials
-    Given I open Login Page
+    Scenario: Login and logout
+        Given I successfully login
+        When I verify the success login in project overview page
+        Then I can successfully logout

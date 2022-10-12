@@ -8,7 +8,13 @@ export default class LocatorsUtils {
   }
 
   projectsOverviewPageLocators = {
-    projectChooserDropdown: '[data-testing-id="projectchooser-dropdown"]'
+    projectChooserDropdown: '[data-testing-id="projectchooser-dropdown"]',
+  }
+
+  commonLocators = {
+    tooltipText: '[class="p-tooltip-text"]',
+    userAvatar: '[data-testing-id="user-avatar"]',
+    signOutButton: '[data-testing-id="navbar-user-menu-signout"]'
   }
 }
 
