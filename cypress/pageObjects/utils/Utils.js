@@ -46,7 +46,6 @@ export default class Utils {
       {timeout: 1000, interval: 10})
       .get('@elemAlias')
       .click()
-    // this.getElementIfHaveStatus(locator, constantsUtils.getBeEnabledConstant()).click({force: true})
   }
 
   typeValueIntoElement(locator, value, typeDelay) {

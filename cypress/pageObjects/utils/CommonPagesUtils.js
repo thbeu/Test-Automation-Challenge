@@ -15,7 +15,7 @@ export default class CommonPagesUtils {
       expect(configurePlan.attr("href"), "https://testfabrik.com/pricing/")
       expect(configurePlan.attr("target"), "_blank")
     })
-    utilsPage.triggerMouseEnterElement(locatorsUtils.commonLocators.userAvatar)
+    utilsPage.triggerMouseEnterElement(`${locatorsUtils.commonLocators.topBar} ${locatorsUtils.commonLocators.userAvatar}`)
     utilsPage.getElementIfHaveStatus(locatorsUtils.commonLocators.tooltipText, 'exist').should('have.text', personalData.name)
   }
 }

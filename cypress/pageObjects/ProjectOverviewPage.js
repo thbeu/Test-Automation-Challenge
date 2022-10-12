@@ -19,13 +19,28 @@ export default class ProjectOverviewPage {
     utilsPage.waitUntilElementIsWithStatus(locatorsUtils.projectsOverviewPageLocators.projectOverviewNameByKey(projectsData[projectName].key),
       "be.visible").should('have.text', Cypress.env('projectName'))
     //Since we don't have a unique id for the project body, we use the project container in combination with the body class
-    utilsPage.waitUntilElementIsWithStatus(locatorsUtils.projectsOverviewPageLocators.projectOverviewCardByKey(projectsData[projectName].key)
-      + " " + locatorsUtils.projectsOverviewPageLocators.projectDescriptionBody,"be.visible")
+    utilsPage.waitUntilElementIsWithStatus(
+      `${locatorsUtils.projectsOverviewPageLocators.projectOverviewCardByKey(projectsData[projectName].key)} 
+      ${locatorsUtils.projectsOverviewPageLocators.projectDescriptionBody}`,
+      "be.visible")
       .should('have.text', projectsData[projectName].motivationSentence)
     utilsPage.waitUntilElementIsWithStatus(locatorsUtils.projectsOverviewPageLocators.projectLogo, "be.visible")
       .children().then( logo => {
         expect(logo.attr("src"), projectsData[projectName].logoSrc)
     })
+  }
+
+  navigateToProjectDashboard(typeOfSelection, projectName) {
+    switch (typeOfSelection) {
+      case "project dropdown":
+        utilsPage.clickOnElement(locatorsUtils.projectsOverviewPageLocators.projectChooserDropdown)
+        utilsPage.waitUntilElementIsWithStatus(locatorsUtils.projectsOverviewPageLocators.projectDropdownByKey(projectsData[projectName].key))
+          .should('have.text', ` ${projectName} `)
+        utilsPage.clickOnElement(locatorsUtils.projectsOverviewPageLocators.projectDropdownByKey(projectsData[projectName].key))
+      case "project name":
+      case "project container":
+      case "open button":
+    }
   }
 }
 

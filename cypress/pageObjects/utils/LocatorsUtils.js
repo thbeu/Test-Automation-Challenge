@@ -14,6 +14,7 @@ export default class LocatorsUtils {
     projectOverviewCard: '[data-testing-id^="projectoverview-card-"]',
     projectOverviewCardByKey: (key) => `[data-testing-id=projectoverview-card-${key}]`,
     projectOverviewNameByKey: (key) => `[data-testing-id=projectoverview-card-${key}-name]`,
+    projectDropdownByKey: (key) => `[data-testing-id="projectchooser-entry-${key}"]`,
     projectDescriptionBody: '[class="wm-projectcard-description-body"]',
     projectLogo: '[class="wm-projectsummary-logo"]',
     nonExistentResults: '[class="wm-l-projectsoverview-no-contents ng-star-inserted"]'
@@ -27,7 +28,8 @@ export default class LocatorsUtils {
     configurePlan: '[data-testing-id="topbar-helt-label"]',
     helpDropdown: '[data-testing-id="helpdropdown-label"]',
     userNotification: '[data-testing-id="usernotifications-label"]',
-    webmateLogo: '[class="wm-l-topbar-logo"]'
+    webmateLogo: '[class="wm-l-topbar-logo"]',
+    topBar: '[class="wm-l-topbar"]'
   }
 }
 
