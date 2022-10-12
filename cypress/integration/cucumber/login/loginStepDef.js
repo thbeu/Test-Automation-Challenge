@@ -13,5 +13,5 @@ When(/^I land in project overview page$/, () => {
 Then(/^I can successfully logout$/, function () {
   utilsPage.clickOnElement(locatorsUtils.commonLocators.userAvatar)
   utilsPage.clickOnElement(locatorsUtils.commonLocators.signOutButton)
-  homepage.veryfyLandingInHomePage()
+  homepage.verifyLandingInHomePage()
 });

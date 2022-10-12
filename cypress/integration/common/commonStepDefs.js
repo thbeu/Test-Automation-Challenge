@@ -12,7 +12,7 @@ export default class commonStepDefs {
 
 Given(/^I visit the homepage$/, () => {
   cy.visit(Cypress.env('url'))
-  homepage.veryfyLandingInHomePage()
+  homepage.verifyLandingInHomePage()
 });
 
 And(/^I successfully login$/, () => {

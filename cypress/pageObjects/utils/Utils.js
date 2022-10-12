@@ -30,7 +30,7 @@ export default class Utils {
    *
    *  @returns {Cypress.Chainable<JQuery<*>>}
    */
-  waitUntilElementIsWithStatus(locator, status) {
+  waitUntilElementIsWithStatus(locator, status = "exist") {
     cy.waitUntil(() => {
       return this.getElementIfHaveStatus(locator, status)
     })
