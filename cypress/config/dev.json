@@ -1,5 +1,6 @@
 {
   "env": {
-    "url": "https://demo.webmate.io/"
+    "url": "https://demo.webmate.io/",
+    "url_api": "https://demo.webmate.io/api/v1/"
   }
 }
