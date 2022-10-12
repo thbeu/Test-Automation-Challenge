@@ -59,6 +59,11 @@ export default class Utils {
       .should('have.value', value)
   }
 
+  clearValueFromElement(locator) {
+    this.waitUntilElementIsWithStatus(locator, "exist")
+      .clear({force: true})
+  }
+
   clearCookies(){
     cy.window().then((window) => {
       window.location.href = 'about:blank'

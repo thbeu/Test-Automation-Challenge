@@ -28,3 +28,14 @@ Then(/^I have no project results$/, function () {
   utilsPage.waitUntilElementIsWithStatus(locatorsUtils.projectsOverviewPageLocators.nonExistentResults, "be.visible")
     .should("have.text", projectsData.nonExistentResultsMessage)
 });
+
+When(/^I clear the filter$/, function () {
+  utilsPage.clearValueFromElement(locatorsUtils.projectsOverviewPageLocators.filterProjectPlaceholder)
+});
+
+Then(/^I see all the projects again$/, function () {
+  cy.get(locatorsUtils.projectsOverviewPageLocators.nonExistentResults).should("not.exist")
+  utilsPage.waitUntilElementIsWithStatus(locatorsUtils.projectsOverviewPageLocators.filterProjectPlaceholder, "be.visible")
+  utilsPage.waitUntilElementIsWithStatus(locatorsUtils.projectsOverviewPageLocators.projectOverviewCard, "be.visible")
+    .should("have.length", projectsData.numberOfProjects*2) //the project container and the project name have similar locators
+});

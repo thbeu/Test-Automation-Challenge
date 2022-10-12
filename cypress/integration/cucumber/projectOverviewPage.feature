@@ -16,3 +16,8 @@ Feature: Project Overview Page Feature
   Scenario: Filter non-existent project
     When I apply a non-existent project filter
     Then I have no project results
+
+  Scenario: Clear non-existent project filter
+    Given I apply a non-existent project filter
+    When I clear the filter
+    Then I see all the projects again
