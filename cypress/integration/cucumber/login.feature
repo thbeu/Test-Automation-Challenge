@@ -1,6 +1,6 @@
 Feature: User Login 
 
-    User Authentication
+    As a user I want to be able to use the login functionality
 
     Background:
         Given I visit the homepage
@@ -8,5 +8,5 @@ Feature: User Login
     @validCredentials
     Scenario: Login and logout
         Given I successfully login
-        When I verify the success login in project overview page
+        When I land in project overview page
         Then I can successfully logout

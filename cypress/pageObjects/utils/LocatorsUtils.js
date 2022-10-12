@@ -9,6 +9,9 @@ export default class LocatorsUtils {
 
   projectsOverviewPageLocators = {
     projectChooserDropdown: '[data-testing-id="projectchooser-dropdown"]',
+    filterProjectPlaceholder: '[placeholder="Filter projects"]',
+    //locator that starts with "projectoverview-card-"
+    projectOverviewCard: '[data-testing-id^="projectoverview-card-"]'
   }
 
   commonLocators = {
