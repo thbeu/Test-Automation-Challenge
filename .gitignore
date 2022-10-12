@@ -1,0 +1,14 @@
+cypress/reports/
+node_modules
+cypress/videos/
+cypress/cucumber-json/
+cypress/screenshots/
+mochawesome-report/
+.idea/
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
