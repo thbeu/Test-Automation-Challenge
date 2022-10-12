@@ -11,8 +11,8 @@ Feature: Project Overview Page Feature
     Then I successfully land in project dashboard page
 
     Examples:
-      | typeOfSelection   |
-      | project dropdown  |
-#      | project name      |
-#      | project container |
-#      | open button       |
+      | typeOfSelection  |
+      | project dropdown |
+      | project name     |
+      | project card     |
+      | open button      |

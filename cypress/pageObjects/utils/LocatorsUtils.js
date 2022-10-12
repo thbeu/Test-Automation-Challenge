@@ -14,6 +14,8 @@ export default class LocatorsUtils {
     projectOverviewCard: '[data-testing-id^="projectoverview-card-"]',
     projectOverviewCardByKey: (key) => `[data-testing-id=projectoverview-card-${key}]`,
     projectOverviewNameByKey: (key) => `[data-testing-id=projectoverview-card-${key}-name]`,
+    projectOverviewOpenButtonByKey: (key) => `[data-testing-id=projectoverview-card-${key}-openbtn]`,
+    projectOverviewDeviceButtonByKey: (key) => `[data-testing-id=projectoverview-card-${key}-devicesbtn]`,
     projectDropdownByKey: (key) => `[data-testing-id="projectchooser-entry-${key}"]`,
     projectDescriptionBody: '[class="wm-projectcard-description-body"]',
     projectLogo: '[class="wm-projectsummary-logo"]',

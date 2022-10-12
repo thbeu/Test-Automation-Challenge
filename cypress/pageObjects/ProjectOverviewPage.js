@@ -37,9 +37,17 @@ export default class ProjectOverviewPage {
         utilsPage.waitUntilElementIsWithStatus(locatorsUtils.projectsOverviewPageLocators.projectDropdownByKey(projectsData[projectName].key))
           .should('have.text', ` ${projectName} `)
         utilsPage.clickOnElement(locatorsUtils.projectsOverviewPageLocators.projectDropdownByKey(projectsData[projectName].key))
+        break
       case "project name":
-      case "project container":
+        utilsPage.clickOnElement(locatorsUtils.projectsOverviewPageLocators.projectOverviewNameByKey(projectsData[projectName].key))
+        break
+      case "project card":
+        utilsPage.clickOnElement(locatorsUtils.projectsOverviewPageLocators.projectOverviewCardByKey(projectsData[projectName].key))
+        break
       case "open button":
+        utilsPage.triggerMouseEnterElement(locatorsUtils.projectsOverviewPageLocators.projectOverviewCardByKey(projectsData[projectName].key))
+        utilsPage.clickOnElement(locatorsUtils.projectsOverviewPageLocators.projectOverviewOpenButtonByKey(projectsData[projectName].key))
+        break
     }
   }
 }
