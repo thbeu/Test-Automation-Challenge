@@ -1,4 +1,3 @@
-import personalData from "../fixtures/personalData.json"
 import projectsData from "../fixtures/projectsData.json"
 
 import {utilsPage} from "./utils/Utils";
@@ -23,6 +22,10 @@ export default class ProjectOverviewPage {
     utilsPage.waitUntilElementIsWithStatus(locatorsUtils.projectsOverviewPageLocators.projectOverviewCardByKey(projectsData[projectName].key)
       + " " + locatorsUtils.projectsOverviewPageLocators.projectDescriptionBody,"be.visible")
       .should('have.text', projectsData[projectName].motivationSentence)
+    utilsPage.waitUntilElementIsWithStatus(locatorsUtils.projectsOverviewPageLocators.projectLogo, "be.visible")
+      .children().then( logo => {
+        expect(logo.attr("src"), projectsData[projectName].logoSrc)
+    })
   }
 }
 

@@ -5,7 +5,10 @@ import personalData from "../../fixtures/personalData.json";
 export default class CommonPagesUtils {
 
   validatePageBaseElements(header) {
-    utilsPage.waitUntilElementIsWithStatus(locatorsUtils.commonLocators.pagesHeader, "be.visible").should('have.text', header)
+    if(header !== undefined) {
+      utilsPage.waitUntilElementIsWithStatus(locatorsUtils.commonLocators.pagesHeader, "be.visible").should('have.text', header)
+    }
+    utilsPage.waitUntilElementIsWithStatus(locatorsUtils.commonLocators.webmateLogo, "be.visible")
     utilsPage.waitUntilElementIsWithStatus(locatorsUtils.commonLocators.helpDropdown, "be.visible")
     utilsPage.waitUntilElementIsWithStatus(locatorsUtils.commonLocators.userNotification, "be.visible")
     utilsPage.waitUntilElementIsWithStatus(locatorsUtils.commonLocators.configurePlan, "exist").then( configurePlan => {

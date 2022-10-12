@@ -1,8 +1,10 @@
 {
   "numberOfProjects": "1",
+  "nonExistentResultsMessage": " None of your projects match your filtering criteria. ",
   "Engima": {
     "key": "782e449f-f649-4745-b644-33cc8aa48eac",
     "numberOfDevices": "2",
-    "motivationSentence": "We want to assess our knowledge in testing skills followed by automation capabilities. Anything is possible when you work as a team."
+    "motivationSentence": "We want to assess our knowledge in testing skills followed by automation capabilities. Anything is possible when you work as a team.",
+    "logoSrc": "https://demo.webmate.io/api/v1/blobs/0e030dd2-7b24-4c2b-b943-82e99c469b3e?access_token=2984190ca526af2c8ce2c5ac707b07ae"
   }
 }

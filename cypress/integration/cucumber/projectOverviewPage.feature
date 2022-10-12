@@ -8,3 +8,11 @@ Feature: Project Overview Page Feature
 
   Scenario: Validate project overview page elements
     Then I land in project overview page and validate all elements
+
+  Scenario: Filter existent project
+    When I apply project filter
+    Then I have the projects filtered
+
+  Scenario: Filter non-existent project
+    When I apply a non-existent project filter
+    Then I have no project results
