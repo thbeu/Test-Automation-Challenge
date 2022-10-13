@@ -9,7 +9,7 @@ export default class Devices {
 
     cy.request({
       method: 'GET',
-      url: requestUtils.buildURL(endpointsUtils.devicesEndpoints.devicesByKey(projectKey)),
+      url: requestUtils.buildURL(endpointsUtils.devicesEndpoints.activeDevices(projectKey)),
       headers: {
         'webmate.api-token': apiToken,
         'webmate.user': personalData.email
@@ -17,6 +17,21 @@ export default class Devices {
     }).then(({status, body}) => {
       expect(status).equal(200)
       cy.wrap(body).as(aliasName)
+    })
+  }
+
+  deleteDevice(projectKey, deviceID) {
+    const apiToken = atob(personalData.apiToken)
+
+    cy.request({
+      method: 'DELETE',
+      url: requestUtils.buildURL(endpointsUtils.devicesEndpoints.deviceByID(deviceID)),
+      headers: {
+        'webmate.api-token': apiToken,
+        'webmate.user': personalData.email
+      }
+    }).then(({status}) => {
+      expect(status).equal(200)
     })
   }
 }

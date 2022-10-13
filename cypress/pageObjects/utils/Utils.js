@@ -94,6 +94,12 @@ export default class Utils {
   waitForInterceptionOfAliasToOccur(alias, expectedMessage){
     cy.wait(alias).its('response.body').should('deep.eq', expectedMessage)
   }
+
+  getRandomNumberBetweenTwoValues(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min;
+  }
 }
 
 export const utilsPage = new Utils()

@@ -19,7 +19,10 @@ export default class DevicesPagePage {
     utilsPage.waitUntilElementIsWithStatus(locatorsUtils.devicesPageLocators.fullDevicesContainer, "be.visible")
     utilsPage.waitUntilElementIsWithStatus(locatorsUtils.devicesPageLocators.devicesInProjectContainer, "be.visible")
     utilsPage.waitUntilElementIsWithStatus(locatorsUtils.devicesPageLocators.devicesInProjectHeader, "be.visible")
-    utilsPage.waitUntilElementIsWithStatus(locatorsUtils.devicesPageLocators.devicesInProjectList, "be.visible")
+    // utilsPage.waitUntilElementIsWithStatus(locatorsUtils.devicesPageLocators.devicesInProjectList, "be.visible")
+    //   .then( activeDevices => {
+    //     cy.wrap(activeDevices.length).as("activeDevices")
+    //   })
     utilsPage.waitUntilElementIsWithStatus(locatorsUtils.devicesPageLocators.devicesSlotsInProjectContainer, "be.visible")
     utilsPage.waitUntilElementIsWithStatus(locatorsUtils.devicesPageLocators.devicesSlotsInProjectHeader, "be.visible")
     utilsPage.waitUntilElementIsWithStatus(locatorsUtils.devicesPageLocators.devicesSlotsInProjectList, "be.visible")

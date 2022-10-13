@@ -38,7 +38,7 @@ export default class ProjectOverviewPage {
     }
   }
 
-  navigateToDevicesPag(projectName) {
+  navigateToDevicesPageFromProjectOverviewPage(projectName) {
     utilsPage.triggerMouseEnterElement(locatorsUtils.commonLocators.projectOverviewCardByKey(projectsData[projectName].key))
     utilsPage.clickOnElement(locatorsUtils.commonLocators.projectOverviewDeviceButtonByKey(projectsData[projectName].key))
   }

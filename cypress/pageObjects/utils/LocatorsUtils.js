@@ -55,10 +55,14 @@ export default class LocatorsUtils {
     fullDevicesContainer: '[class="wm-project-devices-content wm-list ng-star-inserted"]',
     devicesInProjectContainer: '[class="wm-project-devices-content-devices ng-star-inserted"]',
     devicesInProjectHeader: '[class="wm-project-devices-content-devices-header"]',
-    devicesInProjectList: '[class="wm-resourcesummarycontainer wm-list"]',
+    devicesInProjectList: '[class="wm-project-devices-content-devices ng-star-inserted"] [class="wm-resourcesummarycontainer wm-list"]',
     devicesSlotsInProjectContainer: '[class="wm-project-devices-content-slots"]',
     devicesSlotsInProjectHeader: '[class="wm-project-devices-content-slots-header"]',
-    devicesSlotsInProjectList: '[class="wm-resourcesummarycontainer wm-list"]',
+    devicesSlotsInProjectList: '[class="wm-project-devices-content-slots"] [class="wm-resourcesummarycontainer wm-list"]',
+    deviceDeployByKey: (key) => `[data-testing-id="device_slot-summary-${key}-deploybtn"]`,
+    deployableGroup: '[data-testing-id^="deployable-group-"]',
+    deployButton: '[class="p-ripple p-element p-button p-component"]',
+    projectAvailableDeploymentContent: '[class="wm-project-deployment-content-body-list ng-star-inserted"]'
   }
 
   topBarLocators = {
