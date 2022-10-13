@@ -1,9 +1,9 @@
 export default class EndpointsUtils {
 
   devicesEndpoints = {
-    activeDevices: (projectKey) => `/projects/${projectKey}/device/devices`,
+    devices: (projectId) => `/projects/${projectId}/device/devices`,
     deviceByID: (deviceID) => `/device/devices/${deviceID}`,
-
+    deployables: (slotId) => `/slots/${slotId}/deployables`
   }
 }
 

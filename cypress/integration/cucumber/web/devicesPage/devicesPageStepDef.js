@@ -10,6 +10,8 @@ import {homepage} from "../../../../pageObjects/Homepage";
 import {projectOverviewPage} from "../../../../pageObjects/ProjectOverviewPage";
 import {devicesPage} from "../../../../pageObjects/DevicesPage";
 
+const {Given} = require("cucumber");
+
 When(/^I navigate through project overview device button$/, () => {
   projectOverviewPage.navigateToDevicesPageFromProjectOverviewPage(Cypress.env("projectName"))
 })

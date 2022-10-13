@@ -17,6 +17,7 @@
 import './commands'
 import {utilsPage} from "../pageObjects/utils/Utils";
 
+require('@cypress/skip-test/support')
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 
