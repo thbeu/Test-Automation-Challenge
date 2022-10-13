@@ -1,7 +1,8 @@
 import {endpointsUtils} from "./utils/EndpointsUtils";
 import {requestUtils} from "./utils/RequestUtils";
 import personalData from "../fixtures/personalData.json";
-import projectData from "../fixtures/projectsData.json";
+import {utils} from "./utils/Utils";
+import projectsData from "../fixtures/projectsData.json";
 
 export default class Devices {
 
@@ -21,7 +22,7 @@ export default class Devices {
     })
   }
 
-  deleteDevice(projectId, deviceID) {
+  deleteDevice(deviceID) {
     const apiToken = atob(personalData.apiToken)
 
     cy.request({
@@ -48,7 +49,6 @@ export default class Devices {
       }
     }).then(({status, body}) => {
       expect(status).equal(200)
-      cy.log('Body = ' +  body)
       cy.wrap(body).then((devices) => {
         let available_devices = []
         for(let x = 0; x < devices.length; ++x){
@@ -59,35 +59,86 @@ export default class Devices {
         cy.skipOn(available_devices.length === 0)
         cy.wrap(available_devices).as('availableDevices')
       })
-
     })
   }
 
   createDevice(projectId, type, os){
     const apiToken = atob(personalData.apiToken)
-
     this.filterDeviceByTypeAndOS(type, os)
 
-    cy.request({
-      method: 'POST',
-      url: requestUtils.buildURL(endpointsUtils.devicesEndpoints.devices(projectId)),
-      headers: {
-        'webmate.api-token': apiToken,
-        'webmate.user': personalData.email
-      },
-      body: requestUtils.buildBodyCreateDevice()
-    }).then(({status}) => {
-      expect(status).equal(200)
+    cy.get('@name').then((name) => {
+      cy.get('@serial').then((serial) => {
+        cy.request({
+          method: 'POST',
+          url: requestUtils.buildURL(endpointsUtils.devicesEndpoints.devices(projectId)),
+          headers: {
+            'Content-Type': 'application/json',
+            'webmate.api-token': apiToken,
+            'webmate.user': personalData.email
+          },
+          body: type === 'desktop' ? requestUtils.buildBodyCreateDeviceDesktop(name, serial, utils.getSlotId(type)) :
+            requestUtils.buildBodyCreateDeviceMobile(name, serial, utils.getSlotId(type))
+        }).then(({status}) => {
+          expect(status).equal(200)
+        })
+      })
     })
   }
 
   filterDeviceByTypeAndOS(type, os){
-    this.getAvailableDevices(type)
+    this.getDeployables(utils.getSlotId(type))
+    cy.get("@availableDevices").then((availableDevices) => {
+      let notFound = true
+      for(let x = 0; x < availableDevices.length; ++x){
+        let device = availableDevices[x]
+        if(device['deviceProperties']['machine.platform.type'].toString().toLowerCase() === os){
+          if(type === 'desktop'){
+            cy.log(device['deviceProperties']['machine.browsers'][0]['platform'])
+            cy.wrap(device['deviceProperties']['machine.browsers'][0]['platform']).as('name')
+            cy.wrap(device['deviceProperties']['vcloud.templateId']).as('serial')
+          }else{
+            cy.log(device['deviceProperties']['machine.browsers'][0]['model'])
+            cy.wrap(device['deviceProperties']['machine.browsers'][0]['model']).as('name')
+            cy.wrap(device['deviceProperties']['openstf.serial']).as('serial')
+          }
+          notFound = false
+          break;
+        }
+      }
+      cy.skipOn(notFound)
+    })
   }
 
-  getAvailableDevices(type){
-    this.getDeployables(type === 'desktop' ? projectData[Cypress.env('projectName')].desktopSlotId :
-      projectData[Cypress.env('projectName')].mobileSlotId)
+  getDeviceById(deviceID){
+    const apiToken = atob(personalData.apiToken)
+
+    cy.request({
+      method: 'GET',
+      url: requestUtils.buildURL(endpointsUtils.devicesEndpoints.deviceByID(deviceID)),
+      headers: {
+        'webmate.api-token': apiToken,
+        'webmate.user': personalData.email
+      }
+    }).then(({status, body}) => {
+      expect(status).equal(200)
+      cy.wrap(body).as('deviceBody')
+    })
+  }
+
+  verifyDeviceIdBySlotIdIsRunning(slotId){
+    this.getAllDevices(projectsData[Cypress.env("projectName")].key, 'getAllDevices')
+    cy.get('@getAllDevices').then((devices) => {
+      for(let x = 0; x < devices.length; ++x){
+        this.getDeviceById(devices[x])
+        cy.get('@deviceBody').then((deviceBody) => {
+          cy.wait(1000)
+          if(deviceBody['slot'].toString() === slotId.toString()){
+            expect(deviceBody["state"]).equal("running")
+            cy.wrap(deviceBody['id']).as('deviceIdOfSlotId')
+          }
+        })
+      }
+    })
   }
 }
 

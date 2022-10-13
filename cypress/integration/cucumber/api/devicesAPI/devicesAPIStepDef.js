@@ -4,6 +4,7 @@ import projectsData from "../../../../fixtures/projectsData.json";
 import {Given, When, Then } from "cypress-cucumber-preprocessor/steps"
 import {devices} from "../../../../apiObjects/Devices";
 import projectData from "../../../../fixtures/projectsData.json";
+import {utils} from "../../../../apiObjects/utils/Utils";
 
 When(/^I request all devices$/, () => {
   devices.getAllDevices(projectsData[Cypress.env("projectName")].key, 'getDevices')
@@ -21,13 +22,15 @@ Given(/^I create a new (.*) device from (.*)$/, function (type, os) {
 });
 
 When(/^I get all devices$/, function () {
-
+  devices.getAllDevices(projectsData[Cypress.env("projectName")].key, 'allDevices')
 });
 
-Then(/^I validate that the device is created$/, function () {
-
+Then(/^I validate that (.*) device is created$/, function (type) {
+  devices.verifyDeviceIdBySlotIdIsRunning(utils.getSlotId(type))
 });
 
-Then(/^I can delete the created device$/, function () {
-
+And(/^I can delete the created device$/, function () {
+  cy.get('@deviceIdOfSlotId').then((deviceId) => {
+    devices.deleteDevice(deviceId)
+  })
 });

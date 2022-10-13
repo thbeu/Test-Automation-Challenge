@@ -5,12 +5,12 @@ Feature: Devices API
     Scenario Outline: Create and delete a new <type> device from <os>
         Given I create a new <type> device from <os>
         When I get all devices
-        Then I validate that the device is created
+        Then I validate that <type> device is created
         And I can delete the created device
 
         Examples:
-        |type   |os  |
+        |type   |os     |
         |desktop|windows|
-        #|mobile |ios    |
-       # |mobile |android|
+        |mobile |ios    |
+        |mobile |android|
 

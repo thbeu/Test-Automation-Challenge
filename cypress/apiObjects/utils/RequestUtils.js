@@ -5,8 +5,12 @@ export default class RequestUtils {
     return `${baseURL}${subUrl}`
   }
 
-  buildBodyCreateDevice(name, serial, slotId){
-    return `{"name": ${name}, "deviceRequirements": {"openstf.serial": ${serial}, "webmate.slotId": ${slotId}}}`
+  buildBodyCreateDeviceMobile(name, serial, slotId){
+    return `{"name": "${name}", "deviceRequirements": {"openstf.serial": "${serial}", "webmate.slotId": "${slotId}"}}`
+  }
+
+  buildBodyCreateDeviceDesktop(name, serial, slotId){
+    return `{"name": "${name}", "deviceRequirements": {"vcloud.templateId": "${serial}", "console.resolution":{"width":1920,"height":1080}, "webmate.slotId": "${slotId}"}}`
   }
 }
 
