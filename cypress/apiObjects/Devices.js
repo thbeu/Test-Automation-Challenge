@@ -4,7 +4,7 @@ import personalData from "../fixtures/personalData.json";
 
 export default class Devices {
 
-  getAllRequests(projectKey) {
+  getAllDevices(projectKey, aliasName) {
     const apiToken = atob(personalData.apiToken)
 
     cy.request({
@@ -15,9 +15,8 @@ export default class Devices {
         'webmate.user': personalData.email
       }
     }).then(({status, body}) => {
-      cy.log("Status Code: " + status)
-      cy.log("Body: " + body)
-      cy.pause()
+      expect(status).equal(200)
+      cy.wrap(body).as(aliasName)
     })
   }
 }
