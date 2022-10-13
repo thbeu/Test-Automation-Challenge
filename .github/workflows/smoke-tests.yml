@@ -58,6 +58,9 @@ jobs:
           path: ~/.cache/Cypress
           key: cypress-${{ runner.os }}-${{ hashFiles('package.json') }}
 
+      - name: Give permissions
+        run: chmod 777 -R .
+
       - name: smoke environment
         run: npx cypress run --env username="${{ secrets.USERNAME }}",password="${{ secrets.PASSWORD }}" --record --key "${{ secrets.DASHBOARD_KEY }}" --browser=chrome
 
