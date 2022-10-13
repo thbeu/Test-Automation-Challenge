@@ -7,7 +7,20 @@ import {commonPagesUtils} from "./utils/CommonPagesUtils";
 export default class ProjectDashboardPagePage {
 
   checkLandingInPage(){
-    commonPagesUtils.validatePageBaseElements("Project Dashboard")
+    utilsPage.waitUntilElementIsWithStatus(locatorsUtils.commonLocators.pagesHeader, "be.visible")
+      .should('have.text', "Project Dashboard")
+    commonPagesUtils.validateTopBarElements()
+    commonPagesUtils.validateSideBarElements()
+    commonPagesUtils.validateProjectInformation(Cypress.env('projectName'))
+    utilsPage.waitUntilElementIsWithStatus(locatorsUtils.projectDashboardPageLocators.projectInfoContainer, "be.visible")
+    utilsPage.waitUntilElementIsWithStatus(locatorsUtils.projectDashboardPageLocators.deviceSlotUtilizationInfoContainer, "be.visible")
+    utilsPage.waitUntilElementIsWithStatus(locatorsUtils.projectDashboardPageLocators.totalUsersNumberContainer, "be.visible")
+    utilsPage.waitUntilElementIsWithStatus(locatorsUtils.projectDashboardPageLocators.activeUsersContainer, "be.visible")
+    utilsPage.waitUntilElementIsWithStatus(locatorsUtils.projectDashboardPageLocators.devicesSlotOverviewContainer, "be.visible")
+    utilsPage.waitUntilElementIsWithStatus(locatorsUtils.projectDashboardPageLocators.projectActivityContainer, "be.visible")
+    utilsPage.waitUntilElementIsWithStatus(locatorsUtils.projectDashboardPageLocators.jobRunsContainer, "be.visible")
+    utilsPage.waitUntilElementIsWithStatus(locatorsUtils.projectDashboardPageLocators.deviceEntry, "be.visible")
+      .should("have.length", projectsData[Cypress.env("projectName")].numberOfDevices)
   }
 }
 
