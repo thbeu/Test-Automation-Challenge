@@ -1,0 +1,70 @@
+name: 'Smoke Tests'
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  cy_modules:
+    runs-on: ubuntu-latest
+    container: cypress/browsers:node16.5.0-chrome94-ff93
+    steps:
+      # https://github.com/actions/checkout
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # Cache just local node_modules and the Cypress binary archives.
+      - name: Cache node modules
+        uses: actions/cache@v3
+        id: cache-node-modules
+        with:
+          path: node_modules/
+          key: cypress-node_modules-${{ hashFiles('package.json') }}
+
+      # we use the exact restore key to avoid Cypress binary snowballing
+      # https://glebbahmutov.com/blog/do-not-let-cypress-cache-snowball/
+      - name: Cache Cypress binary
+        uses: actions/cache@v3
+        id: cache-binary
+        with:
+          path: ~/.cache/Cypress
+          key: cypress-${{ runner.os }}-${{ hashFiles('package.json') }}
+
+      - name: Install dependencies
+        if: steps.cache-node-modules.outputs.cache-hit != 'true' || steps.cache-binary.outputs.cache-hit != 'true'
+        run: yarn install --immutable
+
+  Run-tests-for:
+    runs-on: ubuntu-latest
+    container: cypress/browsers:node16.5.0-chrome94-ff93
+    needs: [cy_modules]
+
+    steps:
+      # https://github.com/actions/checkout
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # Restore just local node_modules and the Cypress binary archives.
+      - name: Use node modules cache
+        uses: actions/cache@v3
+        with:
+          path: node_modules/
+          key: cypress-node_modules-${{ hashFiles('package.json') }}
+
+      - name: Use Cypress binary cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/Cypress
+          key: cypress-${{ runner.os }}-${{ hashFiles('package.json') }}
+
+      - name: smoke environment
+        run: npx cypress run --env username="${{ secrets.USERNAME }}",password="${{ secrets.PASSWORD }}" --record --key "${{ secrets.DASHBOARD_KEY }}" --browser=chrome
+
+      - name: 'Upload smoke artifacts'
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: smoke-tests-artifacts
+          path: cypress/reports/cucumber-json/*
+          retention-days: 1
