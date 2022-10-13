@@ -31,7 +31,7 @@
   },
   "scripts": {
     "node:generate_cucumber_report": "node custom-reporter.js",
-    "test:run_test": "npx cypress open"
+    "test:run_test": "npx cypress open --env TAGS=\"\""
   },
   "installConfig": {
     "hoistingLimits": "workspaces"

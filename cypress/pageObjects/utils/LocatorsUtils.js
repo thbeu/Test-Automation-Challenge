@@ -1,10 +1,15 @@
 export default class LocatorsUtils {
+
   homepageLocators = {
     emailField: '[data-testing-id="login-userfield"]',
     passwordField: '[data-testing-id="login-passwordfield"]',
     signInButton: '[data-testing-id="login-submit-button"]',
-    signUpLink: '[]',
-    forgotPassword: '[]'
+    signUpLink: '[data-testing-id="signup-link"]',
+    forgotPassword: '[data-testing-id="forgot-password-link"]',
+    resetPasswordField: '[data-testing-id="reset-password-passwordfield"]',
+    resetPasswordButton: '[data-testing-id="reset-password-submit-button"]',
+    resetPasswordErrorMessage: '[class="wm-l-reset-password-errormessage"]',
+    loginErrorMessage: '[data-testing-id="login-errorfield"]'
   }
 
   projectsOverviewPageLocators = {

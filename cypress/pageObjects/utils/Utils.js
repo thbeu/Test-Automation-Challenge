@@ -83,6 +83,17 @@ export default class Utils {
       {timeout: 1000, interval: 10})
       .get('@elemAlias').trigger("mouseenter")
   }
+
+  interceptPasswordResetRequest(){
+    cy.intercept({
+      method: "POST",
+      url: "/api/v1/users/reset-request"
+    }).as('reset-request')
+  }
+
+  waitForInterceptionOfAliasToOccur(alias, expectedMessage){
+    cy.wait(alias).its('response.body').should('deep.eq', expectedMessage)
+  }
 }
 
 export const utilsPage = new Utils()
