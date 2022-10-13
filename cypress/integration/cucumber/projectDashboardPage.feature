@@ -16,3 +16,7 @@ Feature: Project Overview Page Feature
       | project name     |
       | project card     |
       | open button      |
+
+    Scenario: Validate existence project activity messages
+      When I select the project by project card
+      Then I validate activity messages

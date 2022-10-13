@@ -9,10 +9,10 @@ export default class ProjectOverviewPage {
 
   checkLandingInPage(){
     utilsPage.waitUntilElementIsWithStatus(locatorsUtils.commonLocators.pagesHeader, "be.visible")
-      .should('have.text', "Project Overview")
+      .should('have.text', locatorsTextValue.projectOverviewPageHeader)
     commonPagesUtils.validateTopBarElements()
     commonPagesUtils.validateProjectInformation(Cypress.env('projectName'))
-    utilsPage.waitUntilElementIsWithStatus(locatorsUtils.commonLocators.projectPlaceholder(locatorsTextValue.filterPlaceholderText), "be.visible")
+    utilsPage.waitUntilElementIsWithStatus(locatorsUtils.commonLocators.projectPlaceholder(locatorsTextValue.filterProjectsPlaceholderText), "be.visible")
     utilsPage.waitUntilElementIsWithStatus(locatorsUtils.projectsOverviewPageLocators.projectOverviewCard, "be.visible")
       .should("have.length", projectsData.numberOfProjects*2) //the project container and the project name have similar locators
   }
@@ -36,6 +36,11 @@ export default class ProjectOverviewPage {
         utilsPage.clickOnElement(locatorsUtils.commonLocators.projectOverviewOpenButtonByKey(projectsData[projectName].key))
         break
     }
+  }
+
+  navigateToDevicesPag(projectName) {
+    utilsPage.triggerMouseEnterElement(locatorsUtils.commonLocators.projectOverviewCardByKey(projectsData[projectName].key))
+    utilsPage.clickOnElement(locatorsUtils.commonLocators.projectOverviewDeviceButtonByKey(projectsData[projectName].key))
   }
 }
 

@@ -40,6 +40,23 @@ export default class LocatorsUtils {
     //locator that starts with "device-slot-overview-entry-"
     deviceEntry: '[data-testing-id^="device-slot-overview-entry-"]',
     deviceEntryByKey: (key) => `[data-testing-id="device-slot-overview-entry-${key}"]`,
+    refreshButton: '[ptooltip="Refresh"]',
+    activityEntries: '[data-testing-id="project-activity-entry"]',
+    activityMessage: '[class="ng-star-inserted"]'
+  }
+
+  devicesPageLocators = {
+    usedDevicesCheckbox: '[class="wm-project-devices-topbar-checkbox mr-2"]',
+    useDevicesLabel: '[class="wm-project-devices-topbar-checkbox-text"]',
+    appsButton: '[data-testing-id="project-devices-page-appsbtn"]',
+    reservationsButton: '[data-testing-id="project-devices-page-reservationbtn"]',
+    fullDevicesContainer: '[class="wm-project-devices-content wm-list ng-star-inserted"]',
+    devicesInProjectContainer: '[class="wm-project-devices-content-devices ng-star-inserted"]',
+    devicesInProjectHeader: '[class="wm-project-devices-content-devices-header"]',
+    devicesInProjectList: '[class="wm-resourcesummarycontainer wm-list"]',
+    devicesSlotsInProjectContainer: '[class="wm-project-devices-content-slots"]',
+    devicesSlotsInProjectHeader: '[class="wm-project-devices-content-slots-header"]',
+    devicesSlotsInProjectList: '[class="wm-resourcesummarycontainer wm-list"]',
   }
 
   topBarLocators = {

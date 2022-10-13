@@ -13,7 +13,7 @@ export default class Utils {
    *
    * @returns {Cypress.Chainable<JQuery<*>>}
    */
-  getElementIfHaveStatus(locator, status) {
+  getElementIfHaveStatus(locator, status = "exist") {
     let elem = cy.get(locator)
     elem.should(status)
     return elem

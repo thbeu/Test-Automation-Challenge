@@ -13,3 +13,9 @@ When(/^I select the project by (.*)$/, function (typeOfSelection) {
 Then(/^I successfully land in project dashboard page and validate the elements$/, function () {
   projectDashboardPage.checkLandingInPage()
 });
+
+Then(/^I validate activity messages$/, function () {
+  utilsPage.waitUntilElementIsWithStatus(locatorsUtils.projectDashboardPageLocators.activityEntries, "be.visible").wait(2000) //some wait for giving time to messages to load
+  utilsPage.getElementIfHaveStatus(locatorsUtils.projectDashboardPageLocators.activityEntries, "be.visible")
+    .children().should("have.length.at.least", 1)
+})

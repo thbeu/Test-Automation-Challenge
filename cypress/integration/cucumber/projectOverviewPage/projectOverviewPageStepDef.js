@@ -14,7 +14,7 @@ Then(/^I land in project overview page and validate all elements$/, () => {
 });
 
 When(/^I apply project filter$/, function () {
-  utilsPage.typeValueIntoElement(locatorsUtils.commonLocators.projectPlaceholder(locatorsTextValue.filterPlaceholderText), Cypress.env("projectName"), 100)
+  utilsPage.typeValueIntoElement(locatorsUtils.commonLocators.projectPlaceholder(locatorsTextValue.filterProjectsPlaceholderText), Cypress.env("projectName"), 100)
 });
 
 Then(/^I have the projects filtered$/, function () {
@@ -24,7 +24,7 @@ Then(/^I have the projects filtered$/, function () {
 });
 
 When(/^I apply a non-existent project filter$/, function () {
-  utilsPage.typeValueIntoElement(locatorsUtils.commonLocators.projectPlaceholder(locatorsTextValue.filterPlaceholderText), "nonExistentXPTO", 100)
+  utilsPage.typeValueIntoElement(locatorsUtils.commonLocators.projectPlaceholder(locatorsTextValue.filterProjectsPlaceholderText), "nonExistentXPTO", 100)
 });
 
 Then(/^I have no project results$/, function () {
@@ -34,12 +34,12 @@ Then(/^I have no project results$/, function () {
 });
 
 When(/^I clear the filter$/, function () {
-  utilsPage.clearValueFromElement(locatorsUtils.commonLocators.projectPlaceholder(locatorsTextValue.filterPlaceholderText))
+  utilsPage.clearValueFromElement(locatorsUtils.commonLocators.projectPlaceholder(locatorsTextValue.filterProjectsPlaceholderText))
 });
 
 Then(/^I see all the projects again$/, function () {
   cy.get(locatorsUtils.projectsOverviewPageLocators.nonExistentResults).should("not.exist")
-  utilsPage.waitUntilElementIsWithStatus(locatorsUtils.commonLocators.projectPlaceholder(locatorsTextValue.filterPlaceholderText), "be.visible")
+  utilsPage.waitUntilElementIsWithStatus(locatorsUtils.commonLocators.projectPlaceholder(locatorsTextValue.filterProjectsPlaceholderText), "be.visible")
   utilsPage.waitUntilElementIsWithStatus(locatorsUtils.projectsOverviewPageLocators.projectOverviewCard, "be.visible")
     .should("have.length", projectsData.numberOfProjects*2) //the project container and the project name have similar locators
 });
