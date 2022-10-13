@@ -65,7 +65,8 @@ export default class LocatorsUtils {
     deployButton: '[class="p-ripple p-element p-button p-component"]',
     projectAvailableDeploymentContent: '[class="wm-project-deployment-content-body-list ng-star-inserted"]',
     deleteActiveDeviceByKey: (key) => `[data-testing-id="device-${key}-deletebtn"]`,
-    deployedDeviceListCell: '[class="p-element wm-m-deviceslot-deployed-device wm-list-cell ng-star-inserted"]'
+    deployedDeviceListCell: '[class="p-element wm-m-deviceslot-deployed-device wm-list-cell ng-star-inserted"]',
+    accessDeviceButtonByKey: (key) => `[data-testing-id="device-${key}-consolebtn"]`
   }
 
   popUpLocators = {

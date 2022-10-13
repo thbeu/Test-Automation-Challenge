@@ -21,14 +21,27 @@ Feature: Devices Page Feature
       | typeOfSlot |
       | desktop    |
       | mobile     |
+#
+#  @devices @smoke
+#  Scenario Outline: Release active device - <typeOfSlot>
+#    Given I deploy a new <typeOfSlot> device and navigate to devices page
+#    When I release the active device
+#    Then I successfully release device
+#
+#    Examples:
+#      | typeOfSlot |
+#      | desktop    |
+#      | mobile     |
 
-  @devices @smoke
-  Scenario Outline: Release active device - <typeOfSlot>
-    Given I deploy a new <typeOfSlot> device and navigate to devices page
-    When I release the active device
-    Then I successfully release device
-
-    Examples:
-      | typeOfSlot |
-      | desktop    |
-      | mobile     |
+  #TODO: Limitation multi-tab cypress
+#  @devices @smoke
+#  Scenario Outline: Access and interact device - <typeOfSlot>
+#    Given I deploy a new <typeOfSlot> device and navigate to devices page
+#    When I access the active device
+#    Then I successfully reach the device window
+#    And I can interact with the device
+#
+#    Examples:
+#      | typeOfSlot |
+#      | desktop    |
+#      | mobile     |

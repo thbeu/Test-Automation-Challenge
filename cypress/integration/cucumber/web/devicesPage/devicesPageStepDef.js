@@ -1,7 +1,7 @@
 /// <reference types="Cypress" />
 import projectsData from "../../../../fixtures/projectsData.json"
 
-import {Given, Then, When} from "cypress-cucumber-preprocessor/steps"
+import {And, Given, Then, When} from "cypress-cucumber-preprocessor/steps"
 import {utilsPage} from "../../../../pageObjects/utils/Utils";
 import {locatorsUtils} from "../../../../pageObjects/utils/LocatorsUtils";
 import {projectOverviewPage} from "../../../../pageObjects/ProjectOverviewPage";
@@ -59,5 +59,19 @@ Then(/^I successfully release device$/, () => {
   cy.get(locatorsUtils.devicesPageLocators.deployedDeviceListCell).should("not.exist")
   utilsPage.waitUntilElementIsWithStatus(locatorsUtils.devicesPageLocators.deviceDeployButton, "be.visible")
     .should("have.length", projectsData[Cypress.env("projectName")].numberOfDevices)
+})
+
+When(/^I access the active device$/, () => {
+  // cy.get("@activeDevice").then( deviceID => {
+  // utilsPage.clickOnElement(locatorsUtils.devicesPageLocators.accessDeviceButtonByKey(deviceID))
+  utilsPage.clickOnElement(locatorsUtils.devicesPageLocators.accessDeviceButtonByKey("a703645c-d388-4256-af4f-733198b6da60"))
+  // })
+})
+
+When(/^I successfully reach the device window$/, () => {
+
+})
+
+And(/^I can interact with the device$/, () => {
 
 })
