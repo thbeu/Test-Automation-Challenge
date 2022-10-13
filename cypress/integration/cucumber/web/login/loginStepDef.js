@@ -1,12 +1,12 @@
 /// <reference types="Cypress" />
-import responseMessages from "../../../fixtures/responseMessages.json"
+import responseMessages from "../../../../fixtures/responseMessages.json"
 
 
 import { When, Then } from "cypress-cucumber-preprocessor/steps"
-import {utilsPage} from "../../../pageObjects/utils/Utils";
-import {locatorsUtils} from "../../../pageObjects/utils/LocatorsUtils";
-import {homepage} from "../../../pageObjects/Homepage";
-import {projectOverviewPage} from "../../../pageObjects/ProjectOverviewPage";
+import {utilsPage} from "../../../../pageObjects/utils/Utils";
+import {locatorsUtils} from "../../../../pageObjects/utils/LocatorsUtils";
+import {homepage} from "../../../../pageObjects/Homepage";
+import {projectOverviewPage} from "../../../../pageObjects/ProjectOverviewPage";
 
 When(/^I land in project overview page$/, () => {
   projectOverviewPage.checkLandingInPage()

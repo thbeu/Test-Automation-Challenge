@@ -1,13 +1,13 @@
 /// <reference types="Cypress" />
-import projectsData from "../../../fixtures/projectsData.json"
-import responseMessages from "../../../fixtures/responseMessages.json"
-import locatorsTextValue from "../../../fixtures/locatorsTextValue.json";
+import projectsData from "../../../../fixtures/projectsData.json"
+import responseMessages from "../../../../fixtures/responseMessages.json"
+import locatorsTextValue from "../../../../fixtures/locatorsTextValue.json";
 
 import { Then, When } from "cypress-cucumber-preprocessor/steps"
-import {projectOverviewPage} from "../../../pageObjects/ProjectOverviewPage";
-import {utilsPage} from "../../../pageObjects/utils/Utils";
-import {locatorsUtils} from "../../../pageObjects/utils/LocatorsUtils";
-import {commonPagesUtils} from "../../../pageObjects/utils/CommonPagesUtils";
+import {projectOverviewPage} from "../../../../pageObjects/ProjectOverviewPage";
+import {utilsPage} from "../../../../pageObjects/utils/Utils";
+import {locatorsUtils} from "../../../../pageObjects/utils/LocatorsUtils";
+import {commonPagesUtils} from "../../../../pageObjects/utils/CommonPagesUtils";
 
 Then(/^I land in project overview page and validate all elements$/, () => {
   projectOverviewPage.checkLandingInPage()
