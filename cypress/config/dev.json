@@ -2,6 +2,8 @@
   "env": {
     "url": "https://demo.webmate.io/",
     "url_api": "https://demo.webmate.io/api/v1/",
-    "projectName": "Enigma"
+    "projectName": "Enigma",
+    "username": "ricardo.andrade@diconium.com",
+    "password": "Ric@rdo1995"
   }
 }
