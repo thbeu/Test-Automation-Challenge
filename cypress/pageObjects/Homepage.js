@@ -6,38 +6,42 @@ import {locatorsUtils} from "./utils/LocatorsUtils";
 
 export default class Homepage {
 
-  verifyLandingInHomePage(){
+  verifyLandingInHomePage() {
     utilsPage.waitUntilElementIsWithStatus(locatorsUtils.homepageLocators.emailField, "be.visible")
     utilsPage.waitUntilElementIsWithStatus(locatorsUtils.homepageLocators.passwordField, "be.visible")
     utilsPage.waitUntilElementIsWithStatus(locatorsUtils.homepageLocators.signInButton, "be.disabled")
   }
 
-  verifyPasswordCanBeReset(status){
-    utilsPage.waitUntilElementIsWithStatus(locatorsUtils.homepageLocators.resetPasswordField, "be.enabled").should('be.empty')
+  verifyPasswordCanBeReset(status) {
+    utilsPage.waitUntilElementIsWithStatus(locatorsUtils.homepageLocators.resetPasswordField, "be.enabled")
+      .should('be.empty')
 
-    switch (status){
+    switch (status) {
       case 'empty':
-        utilsPage.waitUntilElementIsWithStatus(locatorsUtils.homepageLocators.resetPasswordButton, "be.enabled").click()
-        utilsPage.waitUntilElementIsWithStatus(locatorsUtils.homepageLocators.resetPasswordErrorMessage, "be.visible").should("have.text", responseMessages.resetPasswordEmptyField)
+        utilsPage.waitUntilElementIsWithStatus(locatorsUtils.homepageLocators.resetPasswordButton, "be.enabled")
+          .click()
+        utilsPage.waitUntilElementIsWithStatus(locatorsUtils.homepageLocators.resetPasswordErrorMessage, "be.visible")
+          .should("have.text", responseMessages.resetPasswordEmptyField)
         break;
       case 'wrong':
         utilsPage.interceptPasswordResetRequest()
         utilsPage.typeValueIntoElement(locatorsUtils.homepageLocators.resetPasswordField, personalData.wrongEmail, 100)
         utilsPage.waitUntilElementIsWithStatus(locatorsUtils.homepageLocators.resetPasswordButton, "be.enabled").click()
-        utilsPage.waitUntilElementIsWithStatus(locatorsUtils.homepageLocators.resetPasswordErrorMessage, "be.visible").should("have.text", responseMessages.resetPasswordWrongField)
+        utilsPage.waitUntilElementIsWithStatus(locatorsUtils.homepageLocators.resetPasswordErrorMessage, "be.visible")
+          .should("have.text", responseMessages.resetPasswordWrongField)
         utilsPage.waitForInterceptionOfAliasToOccur('@reset-request', responseMessages.resetPasswordWrongNetworkResponse)
         break;
       case 'right':
         utilsPage.interceptPasswordResetRequest()
         utilsPage.typeValueIntoElement(locatorsUtils.homepageLocators.resetPasswordField, personalData.email, 100)
         utilsPage.waitUntilElementIsWithStatus(locatorsUtils.homepageLocators.resetPasswordButton, "be.enabled").click()
-        utilsPage.waitForInterceptionOfAliasToOccur('@reset-request', JSON.parse(JSON.stringify({ result: 'success' })))
+        utilsPage.waitForInterceptionOfAliasToOccur('@reset-request', JSON.parse(JSON.stringify({result: 'success'})))
         break;
     }
   }
 
-  verifyUsageOfWrongCredentials(type){
-    switch (type){
+  verifyUsageOfWrongCredentials(type) {
+    switch (type) {
       case "email":
         utilsPage.typeValueIntoElement(locatorsUtils.homepageLocators.emailField, personalData.wrongEmail, 100)
         utilsPage.typeValueIntoElement(locatorsUtils.homepageLocators.passwordField, Cypress.env('password'), 100)

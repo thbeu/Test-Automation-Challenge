@@ -6,9 +6,9 @@ Feature: Project Overview Page Feature
     Given I visit the homepage
     And I successfully login
 
-  Scenario Outline: Enter in project dashboard by <typeOfSelection>
+  Scenario Outline: Enter in project dashboard page by <typeOfSelection>
     When I select the project by <typeOfSelection>
-    Then I successfully land in project dashboard page
+    Then I successfully land in project dashboard page and validate the elements
 
     Examples:
       | typeOfSelection  |

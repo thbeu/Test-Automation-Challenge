@@ -31,5 +31,6 @@ When(/^I enter invalid (.*) credentials$/, function (type) {
 });
 
 Then(/^I verify that an error message appears$/, function () {
-  utilsPage.waitUntilElementIsWithStatus(locatorsUtils.homepageLocators.loginErrorMessage).should('have.text', responseMessages.responseFailedLogin)
+  utilsPage.waitUntilElementIsWithStatus(locatorsUtils.homepageLocators.loginErrorMessage)
+    .should('have.text', responseMessages.responseFailedLogin)
 });

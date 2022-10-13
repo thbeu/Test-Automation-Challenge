@@ -10,6 +10,6 @@ When(/^I select the project by (.*)$/, function (typeOfSelection) {
   projectOverviewPage.navigateToProjectDashboard(typeOfSelection, Cypress.env("projectName"))
 });
 
-Then(/^I successfully land in project dashboard page$/, function () {
+Then(/^I successfully land in project dashboard page and validate the elements$/, function () {
   projectDashboardPage.checkLandingInPage()
 });
