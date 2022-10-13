@@ -1,9 +1,9 @@
 import projectsData from "../fixtures/projectsData.json"
+import locatorsTextValue from "../fixtures/locatorsTextValue.json"
 
 import {utilsPage} from "./utils/Utils";
 import {locatorsUtils} from "./utils/LocatorsUtils";
 import {commonPagesUtils} from "./utils/CommonPagesUtils";
-
 
 export default class ProjectOverviewPage {
 
@@ -12,7 +12,7 @@ export default class ProjectOverviewPage {
       .should('have.text', "Project Overview")
     commonPagesUtils.validateTopBarElements()
     commonPagesUtils.validateProjectInformation(Cypress.env('projectName'))
-    utilsPage.waitUntilElementIsWithStatus(locatorsUtils.projectsOverviewPageLocators.filterProjectPlaceholder, "be.visible")
+    utilsPage.waitUntilElementIsWithStatus(locatorsUtils.commonLocators.projectPlaceholder(locatorsTextValue.filterPlaceholderText), "be.visible")
     utilsPage.waitUntilElementIsWithStatus(locatorsUtils.projectsOverviewPageLocators.projectOverviewCard, "be.visible")
       .should("have.length", projectsData.numberOfProjects*2) //the project container and the project name have similar locators
   }

@@ -2,5 +2,6 @@
   "resetPasswordEmptyField": "You must provide an email address",
   "resetPasswordWrongField": "An error occurred. Please try again.",
   "resetPasswordWrongNetworkResponse": "Bad Request: No user known for email rrrrr@gmail.com. Please sign up and activate your account. If you think this is an error, please contact support.",
-  "responseFailedLogin": "There was an error while logging in. Please check your credentials and try again"
+  "responseFailedLogin": "There was an error while logging in. Please check your credentials and try again",
+  "responseNonExistentResultsMessage": " None of your projects match your filtering criteria. "
 }

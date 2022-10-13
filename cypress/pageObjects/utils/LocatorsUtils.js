@@ -5,16 +5,25 @@ export default class LocatorsUtils {
     passwordField: '[data-testing-id="login-passwordfield"]',
     signInButton: '[data-testing-id="login-submit-button"]',
     signUpLink: '[data-testing-id="signup-link"]',
+    signUpTitleForm: '[class="signup-form-header"]',
+    signUpInfoContainer: '[class="signup-info-container"]',
+    signUpInfoLogo: '[class="signup-info-logo"]',
+    signUpInfoList: '[class="signup-info-list"]',
+    signUpInfoFooter: '[class="signup-info-footer"]',
+    signUpFooter: '[class="signup-footer"]',
+    signUpForm: '[class="signup-form-item"]',
+    signUpPrivacyInfo: '[class="privacy-info"]',
+    signUpSubmitButton: '[data-testing-id="login-submit-button"]',
     forgotPassword: '[data-testing-id="forgot-password-link"]',
+    resetPasswordTitle: '[class="wm-card-title"]',
     resetPasswordField: '[data-testing-id="reset-password-passwordfield"]',
     resetPasswordButton: '[data-testing-id="reset-password-submit-button"]',
     resetPasswordErrorMessage: '[class="wm-l-reset-password-errormessage"]',
-    loginErrorMessage: '[data-testing-id="login-errorfield"]'
+    loginErrorMessage: '[data-testing-id="login-errorfield"]',
   }
 
   projectsOverviewPageLocators = {
     projectChooserDropdown: '[data-testing-id="projectchooser-dropdown"]',
-    filterProjectPlaceholder: '[placeholder="Filter projects"]',
     //locator that starts with "projectoverview-card-"
     projectOverviewCard: '[data-testing-id^="projectoverview-card-"]',
     nonExistentResults: '[class="wm-l-projectsoverview-no-contents ng-star-inserted"]'
@@ -60,6 +69,7 @@ export default class LocatorsUtils {
     projectOverviewOpenButtonByKey: (key) => `[data-testing-id=projectoverview-card-${key}-openbtn]`,
     projectOverviewDeviceButtonByKey: (key) => `[data-testing-id=projectoverview-card-${key}-devicesbtn]`,
     projectDropdownByKey: (key) => `[data-testing-id="projectchooser-entry-${key}"]`,
+    projectPlaceholder: (value) => `[placeholder="${value}"]`,
     projectDescriptionBody: '[class="wm-projectcard-description-body"]',
     projectLogo: '[class="wm-projectsummary-logo"]'
   }
