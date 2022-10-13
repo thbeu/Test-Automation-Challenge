@@ -4,5 +4,6 @@
   "resetPasswordWrongNetworkResponse": "Bad Request: No user known for email rrrrr@gmail.com. Please sign up and activate your account. If you think this is an error, please contact support.",
   "responseFailedLogin": "There was an error while logging in. Please check your credentials and try again",
   "responseNonExistentResultsMessage": " None of your projects match your filtering criteria. ",
-  "signUpErrorMessage": "Self signup is not available"
+  "signUpErrorMessage": "Self signup is not available",
+  "deviceRunningStatus": "running"
 }

@@ -1,8 +1,9 @@
 import {endpointsUtils} from "./utils/EndpointsUtils";
 import {requestUtils} from "./utils/RequestUtils";
-import personalData from "../fixtures/personalData.json";
 import {utils} from "./utils/Utils";
+import personalData from "../fixtures/personalData.json";
 import projectsData from "../fixtures/projectsData.json";
+import responseMessages from "../fixtures/responseMessages.json"
 
 export default class Devices {
 
@@ -125,15 +126,16 @@ export default class Devices {
     })
   }
 
-  verifyDeviceIdBySlotIdIsRunning(slotId){
+  verifyDeviceIdBySlotIdIsRunning(type){
     this.getAllDevices(projectsData[Cypress.env("projectName")].key, 'getAllDevices')
     cy.get('@getAllDevices').then((devices) => {
       for(let x = 0; x < devices.length; ++x){
         this.getDeviceById(devices[x])
         cy.get('@deviceBody').then((deviceBody) => {
-          cy.wait(1000)
-          if(deviceBody['slot'].toString() === slotId.toString()){
-            expect(deviceBody["state"]).equal("running")
+          if(deviceBody['slot'].toString() === utils.getSlotId(type).toString()){
+            if(type === 'desktop'){
+              expect(deviceBody["state"]).equal(responseMessages.deviceRunningStatus)
+            }
             cy.wrap(deviceBody['id']).as('deviceIdOfSlotId')
           }
         })

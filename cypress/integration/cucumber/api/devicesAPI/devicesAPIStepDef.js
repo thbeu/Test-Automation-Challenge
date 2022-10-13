@@ -14,7 +14,6 @@ Then(/^I get a successfully response$/, function () {
   cy.get('@getDevices').then((body) => {
     expect(JSON.stringify(body).split(',').length).equal(parseInt(projectData[Cypress.env('projectName')].numberOfDevices))
   })
-
 });
 
 Given(/^I create a new (.*) device from (.*)$/, function (type, os) {
@@ -26,7 +25,7 @@ When(/^I get all devices$/, function () {
 });
 
 Then(/^I validate that (.*) device is created$/, function (type) {
-  devices.verifyDeviceIdBySlotIdIsRunning(utils.getSlotId(type))
+  devices.verifyDeviceIdBySlotIdIsRunning(type)
 });
 
 And(/^I can delete the created device$/, function () {
