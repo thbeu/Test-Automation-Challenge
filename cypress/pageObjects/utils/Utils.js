@@ -48,7 +48,7 @@ export default class Utils {
       .click()
   }
 
-  typeValueIntoElement(locator, value, typeDelay) {
+  typeValueIntoElement(locator, value, typeDelay = 100) {
     this.waitUntilElementIsWithStatus(locator, "be.visible")
       .type(value, {
         log: false,

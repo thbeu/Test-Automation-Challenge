@@ -16,8 +16,8 @@ Given(/^I visit the homepage$/, () => {
 });
 
 And(/^I successfully login$/, () => {
-  utilsPage.typeValueIntoElement(locatorsUtils.homepageLocators.emailField, Cypress.env('username'), 100)
-  utilsPage.typeValueIntoElement(locatorsUtils.homepageLocators.passwordField, Cypress.env('password'), 100)
+  utilsPage.typeValueIntoElement(locatorsUtils.homepageLocators.emailField, Cypress.env('username'))
+  utilsPage.typeValueIntoElement(locatorsUtils.homepageLocators.passwordField, Cypress.env('password'))
   utilsPage.clickOnElement(locatorsUtils.homepageLocators.signInButton)
   utilsPage.waitUntilElementIsWithStatus(locatorsUtils.projectsOverviewPageLocators.projectChooserDropdown, "be.visible")
 });
