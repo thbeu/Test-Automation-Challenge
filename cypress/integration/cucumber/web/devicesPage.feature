@@ -22,6 +22,7 @@ Feature: Devices Page Feature
       | desktop    |
       | mobile     |
 
+  @devices @smoke
   Scenario Outline: Release active device - <typeOfSlot>
     Given I deploy a new <typeOfSlot> device and navigate to devices page
     When I release the active device

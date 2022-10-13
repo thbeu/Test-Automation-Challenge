@@ -1,16 +1,11 @@
 /// <reference types="Cypress" />
-import responseMessages from "../../../../fixtures/responseMessages.json"
 import projectsData from "../../../../fixtures/projectsData.json"
 
-
-import {When, Then} from "cypress-cucumber-preprocessor/steps"
+import {Given, Then, When} from "cypress-cucumber-preprocessor/steps"
 import {utilsPage} from "../../../../pageObjects/utils/Utils";
 import {locatorsUtils} from "../../../../pageObjects/utils/LocatorsUtils";
-import {homepage} from "../../../../pageObjects/Homepage";
 import {projectOverviewPage} from "../../../../pageObjects/ProjectOverviewPage";
 import {devicesPage} from "../../../../pageObjects/DevicesPage";
-
-const {Given} = require("cucumber");
 
 When(/^I navigate through project overview device button$/, () => {
   projectOverviewPage.navigateToDevicesPageFromProjectOverviewPage(Cypress.env("projectName"))
@@ -37,12 +32,17 @@ Then(/^I successfully deployed a new device$/, () => {
     .then(actualActiveDevices => {
       expect(actualActiveDevices.length).to.gt(0)
     })
-
 })
 
 Given(/^I deploy a new (.*) device and navigate to devices page$/, (typeOfSlot) => {
-  //TODO create device via API
+  //TODO create device via API and get the deviceID as alias
   projectOverviewPage.navigateToDevicesPageFromProjectOverviewPage(Cypress.env("projectName"))
+
+  //In this test we should have only 1 active device
+  utilsPage.waitUntilElementIsWithStatus(locatorsUtils.devicesPageLocators.devicesInProjectList, "be.visible")
+    .should("have.length", 1)
+  utilsPage.waitUntilElementIsWithStatus(locatorsUtils.devicesPageLocators.deployedDeviceListCell, "be.visible")
+    .should("have.length", 1)
 })
 
 When(/^I release the active device$/, () => {
@@ -55,5 +55,9 @@ When(/^I release the active device$/, () => {
 })
 
 Then(/^I successfully release device$/, () => {
+  cy.get(locatorsUtils.devicesPageLocators.devicesInProjectList).should("not.exist")
+  cy.get(locatorsUtils.devicesPageLocators.deployedDeviceListCell).should("not.exist")
+  utilsPage.waitUntilElementIsWithStatus(locatorsUtils.devicesPageLocators.deviceDeployButton, "be.visible")
+    .should("have.length", projectsData[Cypress.env("projectName")].numberOfDevices)
 
 })

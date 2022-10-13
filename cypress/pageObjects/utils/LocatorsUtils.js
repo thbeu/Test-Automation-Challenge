@@ -60,10 +60,12 @@ export default class LocatorsUtils {
     devicesSlotsInProjectHeader: '[class="wm-project-devices-content-slots-header"]',
     devicesSlotsInProjectList: '[class="wm-project-devices-content-slots"] [class="wm-resourcesummarycontainer wm-list"]',
     deviceDeployByKey: (key) => `[data-testing-id="device_slot-summary-${key}-deploybtn"]`,
+    deviceDeployButton: '[data-testing-id^="device_slot-summary-"] [data-testing-id*="-deploybtn"]',
     deployableGroup: '[data-testing-id^="deployable-group-"]',
     deployButton: '[class="p-ripple p-element p-button p-component"]',
     projectAvailableDeploymentContent: '[class="wm-project-deployment-content-body-list ng-star-inserted"]',
-    deleteActiveDeviceByKey: (key) => `[data-testing-id="device-${key}-deletebtn"]`
+    deleteActiveDeviceByKey: (key) => `[data-testing-id="device-${key}-deletebtn"]`,
+    deployedDeviceListCell: '[class="p-element wm-m-deviceslot-deployed-device wm-list-cell ng-star-inserted"]'
   }
 
   popUpLocators = {
