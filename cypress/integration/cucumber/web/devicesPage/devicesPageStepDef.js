@@ -37,3 +37,21 @@ Then(/^I successfully deployed a new device$/, () => {
     })
 
 })
+
+Given(/^I deploy a new (.*) device and navigate to devices page$/, (typeOfSlot) => {
+  //TODO create device via API
+  projectOverviewPage.navigateToDevicesPageFromProjectOverviewPage(Cypress.env("projectName"))
+})
+
+When(/^I release the active device$/, () => {
+  cy.get("@activeDevice").then( deviceID => {
+    utilsPage.clickOnElement(locatorsUtils.devicesPageLocators.deleteActiveDeviceByKey(deviceID))
+    utilsPage.waitUntilElementIsWithStatus(locatorsUtils.popUpLocators.popUp, "be.visible")
+    utilsPage.waitUntilElementIsWithStatus(locatorsUtils.popUpLocators.popUpCancelButton, "be.visible")
+    utilsPage.clickOnElement(locatorsUtils.popUpLocators.popUpConfirmationButton)
+  })
+})
+
+Then(/^I successfully release device$/, () => {
+
+})

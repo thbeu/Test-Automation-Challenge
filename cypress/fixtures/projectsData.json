@@ -6,8 +6,6 @@
     "mobileSlotId": "7fe13225-9fe0-4c17-a003-99af848ee1c5",
     "numberOfDevices": "2",
     "motivationSentence": "We want to assess our knowledge in testing skills followed by automation capabilities. Anything is possible when you work as a team.",
-    "logoSrc": "https://demo.webmate.io/api/v1/blobs/0e030dd2-7b24-4c2b-b943-82e99c469b3e?access_token=2984190ca526af2c8ce2c5ac707b07ae",
-    "desktopSlotId": "1eb5d605-7599-4b98-a8e1-a6ab9fa1b3a8",
-    "mobileSlotId": "7fe13225-9fe0-4c17-a003-99af848ee1c5"
+    "logoSrc": "https://demo.webmate.io/api/v1/blobs/0e030dd2-7b24-4c2b-b943-82e99c469b3e?access_token=2984190ca526af2c8ce2c5ac707b07ae"
   }
 }

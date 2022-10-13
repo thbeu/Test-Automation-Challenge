@@ -6,6 +6,7 @@ Feature: Project Overview Page Feature
     Given I visit the homepage
     And I successfully login
 
+  @parallel @smoke
   Scenario Outline: Enter in project dashboard page by <typeOfSelection>
     When I select the project by <typeOfSelection>
     Then I successfully land in project dashboard page and validate the elements
@@ -17,6 +18,7 @@ Feature: Project Overview Page Feature
       | project card     |
       | open button      |
 
+  @parallel @regression
     Scenario: Validate existence project activity messages
       When I select the project by project card
       Then I validate activity messages

@@ -62,7 +62,14 @@ export default class LocatorsUtils {
     deviceDeployByKey: (key) => `[data-testing-id="device_slot-summary-${key}-deploybtn"]`,
     deployableGroup: '[data-testing-id^="deployable-group-"]',
     deployButton: '[class="p-ripple p-element p-button p-component"]',
-    projectAvailableDeploymentContent: '[class="wm-project-deployment-content-body-list ng-star-inserted"]'
+    projectAvailableDeploymentContent: '[class="wm-project-deployment-content-body-list ng-star-inserted"]',
+    deleteActiveDeviceByKey: (key) => `[data-testing-id="device-${key}-deletebtn"]`
+  }
+
+  popUpLocators = {
+    popUp: '[class="wm-l-dialog-control"]',
+    popUpConfirmationButton: '[data-testing-id="confirm-dialog-popup-confirm"]',
+    popUpCancelButton: '[data-testing-id="confirm-dialog-popup-cancel"]'
   }
 
   topBarLocators = {
