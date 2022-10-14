@@ -5,7 +5,7 @@ import {locatorsUtils} from "./utils/LocatorsUtils";
 import {commonPagesUtils} from "./utils/CommonPagesUtils";
 import locatorsTextValue from "../fixtures/locatorsTextValue.json";
 
-export default class DevicesPagePage {
+export default class DevicesPage {
 
   checkLandingInPage(){
     utilsPage.waitUntilElementIsWithStatus(locatorsUtils.commonLocators.pagesHeader, "be.visible")
@@ -19,14 +19,10 @@ export default class DevicesPagePage {
     utilsPage.waitUntilElementIsWithStatus(locatorsUtils.devicesPageLocators.fullDevicesContainer, "be.visible")
     utilsPage.waitUntilElementIsWithStatus(locatorsUtils.devicesPageLocators.devicesInProjectContainer, "be.visible")
     utilsPage.waitUntilElementIsWithStatus(locatorsUtils.devicesPageLocators.devicesInProjectHeader, "be.visible")
-    // utilsPage.waitUntilElementIsWithStatus(locatorsUtils.devicesPageLocators.devicesInProjectList, "be.visible")
-    //   .then( activeDevices => {
-    //     cy.wrap(activeDevices.length).as("activeDevices")
-    //   })
     utilsPage.waitUntilElementIsWithStatus(locatorsUtils.devicesPageLocators.devicesSlotsInProjectContainer, "be.visible")
     utilsPage.waitUntilElementIsWithStatus(locatorsUtils.devicesPageLocators.devicesSlotsInProjectHeader, "be.visible")
     utilsPage.waitUntilElementIsWithStatus(locatorsUtils.devicesPageLocators.devicesSlotsInProjectList, "be.visible")
   }
 }
 
-export const devicesPage = new DevicesPagePage()
+export const devicesPage = new DevicesPage()

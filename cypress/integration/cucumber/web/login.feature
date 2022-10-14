@@ -5,7 +5,7 @@ Feature: User Login
   Background:
     Given I visit the homepage
 
-    @parallel @smoke
+  @parallel @smoke
   Scenario: Login and logout
     Given I successfully login
     When I land in project overview page
