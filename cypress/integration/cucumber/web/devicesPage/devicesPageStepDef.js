@@ -35,7 +35,7 @@ Then(/^I successfully deployed a new device$/, () => {
     })
 })
 
-Given(/^I deploy a new (.*) device and navigate to devices page$/, function (type, os) {
+Given(/^I deploy a new (.*) (.*) device and navigate to devices page$/, function (type, os) {
   devices.createDevice(projectsData[Cypress.env("projectName")].key, type, os)
   projectOverviewPage.navigateToDevicesPageFromProjectOverviewPage(Cypress.env("projectName"))
   //In this test we should have only 1 active device
