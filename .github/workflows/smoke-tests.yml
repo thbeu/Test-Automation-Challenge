@@ -5,9 +5,6 @@ on:
   push:
     branches:
       - develop
-  schedule:
-    # runs tests every day at 1am
-    - cron: '0 * * * *'
 
 jobs:
   Run-tests-for:
