@@ -15,12 +15,12 @@ Feature: Project Overview Page Feature
     When I apply project filter
     Then I have the projects filtered
 
-  @parallel @smoke
+  @parallel @regression
   Scenario: Filter non-existent project
     When I apply a non-existent project filter
     Then I have no project results
 
-  @parallel @smoke
+  @parallel @regression
   Scenario: Clear non-existent project filter
     Given I apply a non-existent project filter
     When I clear the filter
