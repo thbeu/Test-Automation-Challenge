@@ -24,14 +24,15 @@ Feature: Devices Page Feature
 
   @devices @smoke
   Scenario Outline: Release active device - <typeOfSlot>
-    Given I deploy a new <typeOfSlot> device and navigate to devices page
+    Given I deploy a new <typeOfSlot> <os> device and navigate to devices page
     When I release the active device
     Then I successfully release device
 
     Examples:
-      | typeOfSlot |
-      | desktop    |
-      | mobile     |
+      | typeOfSlot | os      |
+      | desktop    | windows |
+      | mobile     | ios     |
+      | mobile     | android |
 
   #TODO: Limitation multi-tab cypress
 #  @devices @smoke

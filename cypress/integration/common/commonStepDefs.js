@@ -1,9 +1,6 @@
 /// <reference types="Cypress" />
 
-import {
-  Given,
-  Before
-} from "cypress-cucumber-preprocessor/steps";
+import {Before, Given} from "cypress-cucumber-preprocessor/steps";
 import {utilsPage} from "../../pageObjects/utils/Utils";
 import {locatorsUtils} from "../../pageObjects/utils/LocatorsUtils";
 import {homepage} from "../../pageObjects/Homepage";
@@ -21,7 +18,7 @@ Before({tags: '@devices'}, () => {
   devices.getAllDevices(projectKey, "allDevices")
   cy.get("@allDevices").each( deviceID => {
     cy.log("Deleting active device: " + deviceID)
-    devices.deleteDevice(projectKey, deviceID)
+    devices.deleteDevice(deviceID)
   })
 });
 

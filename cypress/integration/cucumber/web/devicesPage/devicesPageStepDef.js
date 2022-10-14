@@ -1,11 +1,12 @@
 /// <reference types="Cypress" />
 import projectsData from "../../../../fixtures/projectsData.json"
 
-import {And, Given, Then, When} from "cypress-cucumber-preprocessor/steps"
+import {Given, Then, When} from "cypress-cucumber-preprocessor/steps"
 import {utilsPage} from "../../../../pageObjects/utils/Utils";
 import {locatorsUtils} from "../../../../pageObjects/utils/LocatorsUtils";
 import {projectOverviewPage} from "../../../../pageObjects/ProjectOverviewPage";
 import {devicesPage} from "../../../../pageObjects/DevicesPage";
+import {devices} from "../../../../apiObjects/Devices";
 
 When(/^I navigate through project overview device button$/, () => {
   projectOverviewPage.navigateToDevicesPageFromProjectOverviewPage(Cypress.env("projectName"))
@@ -34,10 +35,9 @@ Then(/^I successfully deployed a new device$/, () => {
     })
 })
 
-Given(/^I deploy a new (.*) device and navigate to devices page$/, (typeOfSlot) => {
-  //TODO create device via API and get the deviceID as alias
+Given(/^I deploy a new (.*) device and navigate to devices page$/, function (type, os) {
+  devices.createDevice(projectsData[Cypress.env("projectName")].key, type, os)
   projectOverviewPage.navigateToDevicesPageFromProjectOverviewPage(Cypress.env("projectName"))
-
   //In this test we should have only 1 active device
   utilsPage.waitUntilElementIsWithStatus(locatorsUtils.devicesPageLocators.devicesInProjectList, "be.visible")
     .should("have.length", 1)
@@ -46,7 +46,7 @@ Given(/^I deploy a new (.*) device and navigate to devices page$/, (typeOfSlot) 
 })
 
 When(/^I release the active device$/, () => {
-  cy.get("@activeDevice").then( deviceID => {
+  cy.get("@activeDeviceID").then(deviceID => {
     utilsPage.clickOnElement(locatorsUtils.devicesPageLocators.deleteActiveDeviceByKey(deviceID))
     utilsPage.waitUntilElementIsWithStatus(locatorsUtils.popUpLocators.popUp, "be.visible")
     utilsPage.waitUntilElementIsWithStatus(locatorsUtils.popUpLocators.popUpCancelButton, "be.visible")
@@ -61,17 +61,10 @@ Then(/^I successfully release device$/, () => {
     .should("have.length", projectsData[Cypress.env("projectName")].numberOfDevices)
 })
 
+//Descope cause of Cypress limitation
 When(/^I access the active device$/, () => {
-  // cy.get("@activeDevice").then( deviceID => {
-  // utilsPage.clickOnElement(locatorsUtils.devicesPageLocators.accessDeviceButtonByKey(deviceID))
-  utilsPage.clickOnElement(locatorsUtils.devicesPageLocators.accessDeviceButtonByKey("a703645c-d388-4256-af4f-733198b6da60"))
-  // })
-})
-
-When(/^I successfully reach the device window$/, () => {
-
-})
-
-And(/^I can interact with the device$/, () => {
-
+  cy.get("@activeDevice").then(deviceID => {
+    utilsPage.clickOnElement(locatorsUtils.devicesPageLocators.accessDeviceButtonByKey(deviceID))
+    utilsPage.clickOnElement(locatorsUtils.devicesPageLocators.accessDeviceButtonByKey("a703645c-d388-4256-af4f-733198b6da60"))
+  })
 })

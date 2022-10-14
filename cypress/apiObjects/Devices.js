@@ -79,8 +79,9 @@ export default class Devices {
           },
           body: type === 'desktop' ? requestUtils.buildBodyCreateDeviceDesktop(name, serial, utils.getSlotId(type)) :
             requestUtils.buildBodyCreateDeviceMobile(name, serial, utils.getSlotId(type))
-        }).then(({status}) => {
+        }).then(({status, body}) => {
           expect(status).equal(200)
+          cy.wrap(body.id).as("activeDeviceID")
         })
       })
     })
@@ -97,7 +98,7 @@ export default class Devices {
             cy.log(device['deviceProperties']['machine.browsers'][0]['platform'])
             cy.wrap(device['deviceProperties']['machine.browsers'][0]['platform']).as('name')
             cy.wrap(device['deviceProperties']['vcloud.templateId']).as('serial')
-          }else{
+          } else {
             cy.log(device['deviceProperties']['machine.browsers'][0]['model'])
             cy.wrap(device['deviceProperties']['machine.browsers'][0]['model']).as('name')
             cy.wrap(device['deviceProperties']['openstf.serial']).as('serial')
@@ -106,6 +107,8 @@ export default class Devices {
           break;
         }
       }
+      cy.log("Found: " + notFound)
+      cy.pause()
       cy.skipOn(notFound)
     })
   }
