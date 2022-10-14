@@ -19,7 +19,7 @@ export default class Devices {
       }
     }).then(({status, body}) => {
       expect(status).equal(200)
-      cy.wrap(body).as(aliasName)
+      cy.wrap(body, {log: false}).as(aliasName)
     })
   }
 
@@ -50,7 +50,7 @@ export default class Devices {
       }
     }).then(({status, body}) => {
       expect(status).equal(200)
-      cy.wrap(body).then((devices) => {
+      cy.wrap(body, {log: false}).then((devices) => {
         let available_devices = []
         for(let x = 0; x < devices.length; ++x){
           if(devices[x]['deviceProperties']['webmate.deviceUnavailable'] === false) {
@@ -58,7 +58,7 @@ export default class Devices {
           }
         }
         cy.skipOn(available_devices.length === 0)
-        cy.wrap(available_devices).as('availableDevices')
+        cy.wrap(available_devices, {log: false}).as('availableDevices')
       })
     })
   }
@@ -107,8 +107,6 @@ export default class Devices {
           break;
         }
       }
-      cy.log("Found: " + notFound)
-      cy.pause()
       cy.skipOn(notFound)
     })
   }
@@ -125,7 +123,7 @@ export default class Devices {
       }
     }).then(({status, body}) => {
       expect(status).equal(200)
-      cy.wrap(body).as('deviceBody')
+      cy.wrap(body, {log: false}).as('deviceBody')
     })
   }
 
