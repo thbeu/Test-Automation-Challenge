@@ -1,0 +1,33 @@
+name: 'Regression Tests'
+
+on:
+  schedule:
+    # runs tests every day at 1am
+    - cron: '0 1 * * *'
+
+jobs:
+  Run-tests-for:
+    runs-on: ubuntu-latest
+    container:
+      image: cypress/browsers:node16.5.0-chrome94-ff93
+      options: --user 1001
+
+    steps:
+      # https://github.com/actions/checkout
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        if: steps.cache-node-modules.outputs.cache-hit != 'true' || steps.cache-binary.outputs.cache-hit != 'true'
+        run: yarn install --immutable
+
+      - name: smoke environment
+        run: npx cypress run --env username="${{ secrets.USERNAME }}",password="${{ secrets.PASSWORD }}" --record --key "${{ secrets.DASHBOARD_KEY }}" --browser=chrome
+
+      - name: 'Upload smoke artifacts'
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: smoke-tests-artifacts
+          path: cypress/reports/cucumber-json/*
+          retention-days: 1
