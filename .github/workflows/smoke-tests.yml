@@ -25,7 +25,7 @@ jobs:
         run: yarn install --immutable
 
       - name: smoke environment
-        run: npx cypress run --env username="${{ secrets.USERNAME }}",password="${{ secrets.PASSWORD }}" --record --key "${{ secrets.DASHBOARD_KEY }}" --browser=chrome
+        run: npx cypress run --env TAGS="@smoke",username="${{ secrets.USERNAME }}",password="${{ secrets.PASSWORD }}" --record --key "${{ secrets.DASHBOARD_KEY }}" --browser=chrome
 
       - name: 'Upload smoke artifacts'
         uses: actions/upload-artifact@v2
